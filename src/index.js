@@ -12,7 +12,7 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 //nuestras rutas
-app.use(require('./routes/auth.routes.js'));
+app.use(require('./routes/auth.routes'));
 
 //ponemos en escucha al servidor
 app.listen(PORT, () => {
