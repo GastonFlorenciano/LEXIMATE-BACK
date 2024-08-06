@@ -54,5 +54,4 @@ ctrl.login = async (req, res) => {
     }
 };
 
-
 module.exports = ctrl;
