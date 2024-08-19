@@ -6,8 +6,15 @@ export const userControllers = {};
 // Controlador de registro
 userControllers.register = async (req, res) => {
   try {
-    const { NombreUsuario, ApellidoUsuario, Genero, Email, Contrasenia } =
-      req.body;
+    const {
+      NombreUsuario,
+      ApellidoUsuario,
+      Genero,
+      FechaNacimiento,
+      Pais,
+      Email,
+      Contrasenia,
+    } = req.body;
     console.log(req.body);
     // Verificar si el email ya existe
     const existeUsuario = await userModel.findOne({ Email });
@@ -21,6 +28,8 @@ userControllers.register = async (req, res) => {
       NombreUsuario,
       ApellidoUsuario,
       Genero,
+      FechaNacimiento,
+      Pais,
       Email,
       Contrasenia: hashContrasenia,
     });
