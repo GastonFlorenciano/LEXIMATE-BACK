@@ -12,7 +12,7 @@ const userSchema = new Schema(
     },
     Genero: {
       type: String,
-      default: 'sin especificar',
+      required: true,
     },
     FechaNacimiento: {
       type: Date,
@@ -20,7 +20,7 @@ const userSchema = new Schema(
     },
     Pais: {
       type: String,
-      default: 'sin especificar',
+      required: true,
     },
     Email: {
       type: String,
