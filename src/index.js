@@ -1,20 +1,9 @@
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-
-//inicializamos
-const app = express();
-const PORT = process.env.PORT ||  3000;
-
-//middlewares
-app.use(cors());
-app.use(morgan('dev'));
-app.use(express.json());
-
-//nuestras rutas
-app.use(require('./routes/auth.routes'));
+import { app } from './app.js';
+import { connectDb } from './utils/dataBase.js';
+import { PORT } from './config.js';
 
 //ponemos en escucha al servidor
 app.listen(PORT, () => {
-    console.log('Servidor corriendo en el puerto:', PORT);
-})
+  connectDb();
+  console.log('Servidor corriendo en el puerto:', PORT);
+});

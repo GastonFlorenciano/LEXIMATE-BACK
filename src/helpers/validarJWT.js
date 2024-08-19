@@ -1,27 +1,17 @@
-const jwt = require('jsonwebtoken');
-const { conexionDB } = require('../db/database.js');
-// const { token } = require('morgan');
+import jwt from 'jsonwebtoken';
+import { userModel } from '../models/user.models.js';
 
-const validarJWT = async (token) => {
-
-    try {
-        const { id } = jwt.verify(token, 'my secret');
-
-        const connection = await conexionDB();
-
-        const [usuario] = await connection.query('SELECT * FROM usuario WHERE IdUsuario = ? LIMIT 1', id)
-
-        if (!usuario) {
-            return false
-        } else {
-            return usuario[0];
-        }
-    } catch (err) {
-        console.log('error');
-        return false;
+export const validarJWT = async (token) => {
+  try {
+    const { id } = jwt.verify(token, 'my secret');
+    const usuario = await userModel.findById(id);
+    if (!usuario) {
+      return false;
+    } else {
+      return usuario;
     }
-}
-
-module.exports = {
-    validarJWT
-}
+  } catch (error) {
+    console.log(error);
+    return false;
+  }
+};

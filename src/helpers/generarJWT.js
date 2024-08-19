@@ -1,15 +1,16 @@
-const jwt = require('jsonwebtoken');
+import jwt from 'jsonwebtoken';
 
-const generarJWT = (id) => {
-    return new Promise((resolve, reject) => {
-        jwt.sign(id, 'mysecret', {
-            expiresIn: 60 * 60
-        }, (err, token) => {
-            (err) ? reject(err) : resolve(token);
-        })
-    })
-}
-
-module.exports = {
-    generarJWT
-}
+export const generarJWT = (id) => {
+  return new Promise((resolve, reject) => {
+    jwt.sign(
+      id,
+      'mysecret',
+      {
+        expiresIn: 60 * 60,
+      },
+      (err, token) => {
+        err ? reject(err) : resolve(token);
+      }
+    );
+  });
+};
